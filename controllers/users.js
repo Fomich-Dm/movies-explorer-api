@@ -17,7 +17,7 @@ module.exports.login = (req, res, next) => {
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         {
           expiresIn: '7d',
-        }
+        },
       );
       res.send({ token });
     })
@@ -44,7 +44,7 @@ module.exports.patchUserInfo = (req, res, next) => {
   User.findByIdAndUpdate(
     req.user._id,
     { email, name },
-    { new: true, runValidators: true }
+    { new: true, runValidators: true },
   )
     .then((user) => {
       if (!user) {

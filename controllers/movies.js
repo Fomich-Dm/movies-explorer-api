@@ -50,9 +50,9 @@ module.exports.deleteMovie = (req, res, next) => {
   Movie.findById(req.params.movieId)
     .then((movie) => {
       if (!movie) {
-        next(new NotFoundError('Пользователь не найден'));
+        next(new NotFoundError('Фильм не найден'));
       } else if (movie.owner.toString() !== req.user._id) {
-        next(new ForbiddenError('не ваша карточка'));
+        next(new ForbiddenError('Это не ваш фильм'));
       } else {
         Movie.findByIdAndRemove(req.params.movieId)
           .then((removeMovie) => {
@@ -65,7 +65,7 @@ module.exports.deleteMovie = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Получен пользователя с некорректным id'));
+        next(new BadRequestError('Получен фильм с некорректным id'));
       } else {
         next(err);
       }
