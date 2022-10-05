@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const helmet = require('helmet');
 
 const routes = require('./routes/index');
 const errorHandler = require('./middlewares/error');
@@ -19,6 +20,8 @@ mongoose.connect(mongoUrl, {
 app.use(express.json());
 
 app.use(requestLogger);
+
+app.use(helmet());
 
 app.use(routes);
 
