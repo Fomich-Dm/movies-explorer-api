@@ -45,5 +45,8 @@ $ git clone git@github.com:Fomich-Dm/movies-explorer-api.git
 # установка зависимостей
 $ npm install
 
-# запуск develop-сборки фронтенда
+# запускает сервер
+$ npm run start
+
+# запускает сервер с hot-reload
 $ npm run dev
